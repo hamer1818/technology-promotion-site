@@ -1,0 +1,76 @@
+---
+import Card from "./Card.astro";
+import Header from "./Header.astro";
+const kod = `
+1-)AlpineJS Sayaç:
+  <div x-data="{ count: 0 }">
+      <button @click="count--" class="btn btn-danger">-</button>
+      <span x-text="count" class="mx-2"></span>
+      <button @click="count++" class="btn btn-success">+</button>
+  </div>
+2-)Görünürlüğünü değiştiren yazı:
+  <div x-data="{ isVisible: false }">
+<button @click="isVisible = !isVisible" class="btn btn-primary"
+  >Toggle</button
+>
+<p x-show="isVisible">Bu metin görünür / gizlenir.</p>
+  </div>
+3-)Tıklayınca renk değiştiren buton:
+  <div x-data="{ isActive: false }">
+    <button
+      @click="isActive = !isActive"
+      class="btn"
+      :class="{ 'btn-primary': isActive, 'btn-secondary': !isActive }"
+    >
+      Click Me
+    </button>
+  </div>
+4-)for döngüsüyle liste oluşturma:
+  <ul x-data="{ items: ['Elma', 'Armut', 'Kiraz'] }">
+    <template x-for="item in items">
+      <li x-text="item"></li>
+    </template>
+  </ul>`;
+---
+
+
+  <Header 
+  head="AlpineJS Örnekleri" 
+  body="Alpine.js, JavaScript kütüphanelerinden biridir ve modern web uygulamaları oluşturmak için kullanılır. Alpine.js, küçük boyutu ve hızlı yükleme süresi nedeniyle son zamanlarda popüler hale gelmiştir. Alpine.js, Vue.js'in bazı özelliklerini içerir ve Vue.js gibi bir framework kadar karmaşık değildir. Alpine.js, Vanilla JavaScript (saf JavaScript) ile oluşturulan statik bir HTML sayfasına dinamik özellikler eklemek için kullanılabilir. Alpine.js, veri bağlama, if/else ifadeleri, for döngüsü, tetikleyiciler (triggers), kısa kodlar (shortcodes) ve daha birçok özellik sunar. Bu özellikler, geliştiricilere uygulamaları için dinamik ve etkileşimli özellikler eklemelerine olanak tanır. Alpine.js, Vue.js'in benzer özelliklerini içerdiği için, Vue.js öğrenmek istemeyen geliştiriciler için iyi bir alternatiftir. Ayrıca Alpine.js, özellikle küçük ve orta ölçekli web uygulamaları için uygun bir seçenektir. Hem yeni başlayanlar hem de deneyimli geliştiriciler, Alpine.js kullanarak web uygulamalarına hızlı bir şekilde dinamik özellikler ekleyebilirler."
+  code={kod}/>
+<Card title="AlpineJS Sayaç">
+  <div x-data="{ count: 0 }">
+    <button @click="count--" class="btn btn-danger">-</button>
+    <span x-text="count" class="mx-2"></span>
+    <button @click="count++" class="btn btn-success">+</button>
+  </div>
+</Card>
+<Card title="Görünürlüğünü değiştiren yazı">
+<div x-data="{ isVisible: false }">
+  <button @click="isVisible = !isVisible" class="btn btn-primary"
+    >Toggle</button
+  >
+  <p x-show="isVisible">Bu metin görünür / gizlenir.</p>
+</div>
+</Card>
+  
+<Card title="Tıklayınca renk değiştiren buton">
+  <div x-data="{ isActive: false }">
+    <button
+      @click="isActive = !isActive"
+      class="btn"
+      :class="{ 'btn-primary': isActive, 'btn-secondary': !isActive }"
+    >
+      Click Me
+    </button>
+  </div>
+</Card>
+<Card title="for döngüsüyle liste oluşturma">
+  <ul x-data="{ items: ['Elma', 'Armut', 'Kiraz'] }">
+    <template x-for="item in items">
+      <li x-text="item"></li>
+    </template>
+  </ul>
+</Card>
+
+

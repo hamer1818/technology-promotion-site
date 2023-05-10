@@ -1,0 +1,39 @@
+---
+
+export interface Props {
+  activeStatus?: string;
+}
+
+const { activeStatus} = Astro.props;
+
+---
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">mix.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" >
+          <a class="nav-link" href="/">Ana Sayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/reactForm">Kayıt Sayfası</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/vueForm">Giriş Sayfası</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/alpinejs">AlpineJS Örnekler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mix">Hesap makinesi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/focus">QRCode oluşturucu</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

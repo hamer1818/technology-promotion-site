@@ -1,0 +1,68 @@
+---
+import React from "react";
+import QRCodeComponent from "../components/QRCodeComponent.jsx";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+
+const kod = `
+import React, { useState } from 'react';
+import QRCode from 'qrcode.react';
+
+function QRCodeComponent() {
+  const [value, setValue] = useState('');
+  const [qrSize, setQRSize] = useState(128);
+
+  const handleValueChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleQRSizeChange = (event) => {
+    setQRSize(parseInt(event.target.value));
+  };
+
+  return (
+    <div>
+      <div className='input-group mb-3'>
+      <label htmlFor="qr-value" className='input-group-text'>QR Kodu İçeriği:</label>
+      <input
+        type="text"
+        id="qr-value"
+        value={value}
+        onChange={handleValueChange}
+        className='form-control'
+      />
+      
+      <br />
+      
+      <label htmlFor="qr-size" className='input-group-text'>QR Kodu Boyutu:</label>
+      <input
+        type="number"
+        id="qr-size"
+        min="32"
+        max="512"
+        value={qrSize}
+        onChange={handleQRSizeChange}
+        className='form-control'
+      /></div>
+      <br />
+      <QRCode value={value} size={qrSize} />
+    </div>
+  );
+}
+
+export default QRCodeComponent;
+`
+---
+
+<Layout>
+  <Header
+    head="React ile Canlı QR Code"
+    body="ReactJS, Facebook tarafından geliştirilen açık kaynak bir JavaScript kütüphanesidir. React, modern web uygulamaları oluşturmak için kullanılan popüler bir araçtır. React, uygulama geliştiricilerine, verimli bir şekilde bileşen tabanlı arayüzler oluşturmalarına olanak tanır. React, karmaşık uygulamaların bileşenlerini oluşturmak için kullanılan JSX adlı bir sözdizimi kullanır. JSX, HTML benzeri bir dil ile JavaScript kodlarının birleştirilmesine izin verir. React, bileşenlerin durumunu yönetmek için bir yönetim sistemi sağlar ve bileşenlerin hızlı bir şekilde yeniden kullanılmasını sağlar. React, yüksek performanslı bir arayüz oluşturmak için, bileşenlerin sadece güncellenmesi gerektiği zamanlarda yenilenmesini sağlayan sanal DOM adlı bir yöntem kullanır. React, birçok büyük şirket tarafından kullanılan popüler bir teknolojidir ve büyük bir topluluğa sahiptir. React ayrıca, diğer kütüphaneler ve araçlar ile kolayca entegre edilebilir."
+    code={kod}
+  />
+  <div style="text-align: center;">
+    <h1>&nbsp</h1>
+    <QRCodeComponent client:load />
+  </div>
+</Layout>

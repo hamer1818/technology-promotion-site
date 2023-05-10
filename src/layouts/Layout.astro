@@ -1,0 +1,38 @@
+---
+import Menu from "../components/menu.astro";
+import Footer from "../components/Footer.astro";
+import Head from "../components/Head.astro";
+---
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <Head/>
+</head>
+<body>
+  <div class="container">
+	<Menu/>
+    <slot/>
+    <br>
+	<Footer/>
+  </div>
+</body>
+</html>
+
+<style is:global>
+/* code tag i içine kod gelecek güzel bir css oluştur */
+code {
+  background-color: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  color: #333;
+  display: block;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 14px 0 14px;
+  padding: 8px 10px;
+  white-space: pre;
+  word-break: break-all;
+}
+</style>

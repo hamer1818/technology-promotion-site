@@ -1,0 +1,64 @@
+---
+export interface Props {
+  head?: string;
+  body?: string;
+  code?: string;
+}
+
+const {
+  head = "Bu Web sitesinde Güçlü teknolojiler kullanılmıştır",
+  body = "Bootstrap, Vue.js, React.js ve Astro.js, günümüzde web uygulamaları geliştirmek için en popüler araçlardan bazılarıdır. Bu yazıda, her birinin ne olduğunu ve nasıl kullanıldığını ayrıntılı olarak açıklayacağım. Bootstrap: Bootstrap, Twitter tarafından geliştirilen açık kaynaklı bir front-end çerçevesidir. Web sayfalarının tasarımını hızlı bir şekilde oluşturmak için tasarlanmıştır ve HTML, CSS ve JavaScript kullanarak yapılmıştır. Bootstrap'un kullanımı oldukça kolaydır ve önceden tanımlanmış stiller ve bileşenler içerir. Bootstrap, mobil uyumlu tasarımlar oluşturmak için en yaygın kullanılan araçtır. Bu sayede, farklı boyutlardaki cihazlar için uygun tasarımlar hazırlamak kolay hale gelir. Vue.js: Vue.js, açık kaynak kodlu bir JavaScript framework'üdür. Modern web uygulamaları geliştirmek için kullanılır. Vue.js, diğer framework'lere göre daha hafif bir yapıya sahiptir ve özellikle büyük uygulamalarda daha hızlı performans sergiler. Vue.js, bileşen tabanlı bir yapıya sahiptir ve bu sayede bir bileşenin tasarımı ve işlevselliği bağımsız olarak geliştirilebilir. Vue.js, özellikle tek sayfa uygulamalarının geliştirilmesi için tercih edilir. React.js: React.js, Facebook tarafından geliştirilen açık kaynak kodlu bir JavaScript library'sidir. Özellikle büyük web uygulamalarında kullanılır ve Virtual DOM kullanımı ile performansı yüksektir. React.js, bileşen tabanlı bir yapıya sahiptir ve bu sayede bir bileşenin tasarımı ve işlevselliği bağımsız olarak geliştirilebilir. React.js, birçok popüler uygulama tarafından kullanılır ve büyük topluluğu sayesinde hızlı bir şekilde sorunlar çözülebilir. Astro.js: Astro.js, modern web uygulamaları için yeni bir framework'tür. Sıfırdan başlayarak, tüm bir web uygulamasının geliştirilmesi için kullanılabilir. Astro.js, geleceğin web uygulamaları için tasarlanmıştır ve bu sayede modern teknolojilere uygun bir yapıya sahiptir. Astro.js, statik sitelerin, dinamik web uygulamalarına dönüştürülmesine olanak tanır. Ayrıca, Vue.js, React.js ve Svelte.js bileşenlerinin kullanımına da olanak sağlar.",
+  code,
+} = Astro.props;
+---
+
+<header class="jumbotron my-4">
+  <h1 class="display-3">{head}</h1>
+  <div class="container mt-3">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#myModal"
+    >
+      Ayrıntılar
+    </button>
+  </div>
+</header>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Açıklama</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="icerik">
+          {body}
+        </div>
+        <div class="code">
+          <div x-data="{ open: false }">
+            <button @click="open = ! open">Kodları Göster</button>
+         
+            <div x-show="open" @click.outside="open = false"><code>
+              {code}
+            </code></div>
+        </div>
+
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+          >Kapat</button
+        >
+      </div>
+    </div>
+  </div>
+</div>

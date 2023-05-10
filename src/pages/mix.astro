@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sayac from "../components/Sayac.vue";
+import Header from "../components/Header.astro";
+const kod = `
+<template>
+  <!-- Happy Coding -->
+  <div class= "p-3 calc-bg" style= "max-width: 400px; margin: 50px auto;">
+    
+    <!-- Calculator Result -->
+    <div class= "w-full rounded m-1 p-3 text-right lead font-weight-bold text-white bg-vue-dark">
+      {{ calculatorValue || 0 }}
+    </div>
+
+    <!-- Calculator buttons -->
+    <div class= "row no-gutters">
+      <div class= "col-3" v-for="n in calculatorElements" :key="n">
+        <div class= "lead text-white text-center m-1 py-3 bg-vue-dark rounded hover-class"
+          :class= "{'bg-vue-green': ['C','*','/','-','+','%','='].includes(n)}"
+          @click="action(n)">
+          {{ n }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'Calculator',
+  props: {
+    msg: String
+  },
+
+  data() {
+    return {
+      calculatorValue: '',
+      calculatorElements: ['C','*','/','-',7,8,9,'+',4,5,6,'%',1,2,3,'=',0,'.'],
+      operator: null,
+      previousCalculatorValue: '',
+    }
+  },
+
+  methods: {
+    action(n){
+
+      /* Append value */
+      if(!isNaN(n) || n === '.'){
+        this.calculatorValue += n + '';
+      }
+
+      /* Clear value */
+      if(n === 'C'){
+        this.calculatorValue = '';
+      }
+
+      /* Percentage */
+      if(n === '%'){
+        this.calculatorValue = this.calculatorValue / 100 + '';
+      }
+
+      /* Operators */
+      if(['/','*','-','+'].includes(n)){
+        this.operator = n;
+        this.previousCalculatorValue = this.calculatorValue;
+        this.calculatorValue = '';
+      }
+
+      /* Calculate result using the eval function */
+      if(n === '='){
+        this.calculatorValue = eval(
+          this.previousCalculatorValue + this.operator + this.calculatorValue
+        );
+        this.previousCalculatorValue = '';
+        this.operator = null;
+      }
+    }
+  }
+}
+</script>
+
+
+<style scoped>
+  .bg-vue-dark {
+    background: #70869e;
+  }
+  .hover-class:hover {
+    cursor: pointer;
+    background: #6d7279;
+  }
+  .bg-vue-green {
+    background: #3fb984;
+  }
+  .calc-bg {
+    background: #bebbbb;
+  }
+</style>`
+---
+
+<Layout>
+  <Header 
+  head="VueJS İle Hesap Makinesi" 
+  body="VueJS, açık kaynak kodlu bir JavaScript framework'dür ve modern web uygulamaları geliştirmek için kullanılır. Vue, React ve AngularJS gibi popüler JavaScript framework'leri ile benzerlikler taşır. Ancak, Vue'nun kolay öğrenilebilir olması ve küçük boyutu nedeniyle, son zamanlarda özellikle başlangıç seviyesindeki geliştiriciler tarafından tercih edilmektedir. VueJS, verimli bir şekilde bileşen tabanlı arayüzler oluşturmak için kullanılır. VueJS, HTML, CSS ve JavaScript'in bir arada kullanılmasına olanak sağlar ve işlevselliği ile tasarımı birleştirebilir. Ayrıca VueJS, sanal DOM (virtual DOM) yapısını kullanarak verimli bir performans sağlar. VueJS, ölçeklenebilir bir yapıya sahiptir ve büyük ölçekli uygulamalar için de uygundur. Ayrıca, VueJS, birçok farklı platformda kullanılabilen bir teknolojidir ve büyük bir topluluğa sahiptir. Bu nedenle, VueJS, modern web uygulamaları geliştirmek isteyen geliştiriciler için iyi bir seçenektir."
+  code={kod}/>
+  <Sayac client:load/>
+</Layout>

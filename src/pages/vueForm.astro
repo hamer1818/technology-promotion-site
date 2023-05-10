@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Login from "../components/Login.vue";
+import Header from "../components/Header.astro";
+
+const kod = `
+<template>
+    <div class="container">
+      <form @submit.prevent="handleSubmit" class="form">
+        <h2>Giriş Yap</h2>
+        <div class="form-group">
+          <label for="email">E-posta:</label>
+          <input type="email" name="email" class="form-control" v-model="formData.email">
+        </div>
+        <div class="form-group">
+          <label for="password">Şifre:</label>
+          <input type="password" name="password" class="form-control" v-model="formData.password">
+        </div>
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+      </form>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        formData: {}
+      };
+    },
+    methods: {
+      handleSubmit() {
+        // Form verilerini bir API'ye göndermek için buraya kod yazabilirsiniz.
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  /* Bootstrap stilleri */
+  .form-group label {
+    font-weight: bold;
+  }
+  .form {
+    margin-top: 50px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  </style>
+  `
+---
+
+<Layout>
+  <Header
+    head="Giriş sayfası"
+    body="VueJS, açık kaynak kodlu bir JavaScript framework'dür ve modern web uygulamaları geliştirmek için kullanılır. Vue, React ve AngularJS gibi popüler JavaScript framework'leri ile benzerlikler taşır. Ancak, Vue'nun kolay öğrenilebilir olması ve küçük boyutu nedeniyle, son zamanlarda özellikle başlangıç seviyesindeki geliştiriciler tarafından tercih edilmektedir. VueJS, verimli bir şekilde bileşen tabanlı arayüzler oluşturmak için kullanılır. VueJS, HTML, CSS ve JavaScript'in bir arada kullanılmasına olanak sağlar ve işlevselliği ile tasarımı birleştirebilir. Ayrıca VueJS, sanal DOM (virtual DOM) yapısını kullanarak verimli bir performans sağlar. VueJS, ölçeklenebilir bir yapıya sahiptir ve büyük ölçekli uygulamalar için de uygundur. Ayrıca, VueJS, birçok farklı platformda kullanılabilen bir teknolojidir ve büyük bir topluluğa sahiptir. Bu nedenle, VueJS, modern web uygulamaları geliştirmek isteyen geliştiriciler için iyi bir seçenektir."
+    code={kod}
+  />
+  <Login client:load />
+</Layout>
